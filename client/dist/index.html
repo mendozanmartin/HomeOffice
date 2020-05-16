@@ -3,9 +3,11 @@
 
 <head>
   <meta charset="utf-8">
+  <script src="./socket.io.slim.js"></script>
 
   <style>
-    section {
+    section,
+    audio {
       display: none;
     }
   </style>
@@ -13,10 +15,14 @@
 
 <body>
   <section id="login">
-    <button id="login-play">Play a game</button>
+    <input type="text" id="login-channel" />
+    <button id="login-play">Join Channel</button>
   </section>
 
   <section id="game">
+    <!-- Data tags -->
+    <audio id="game-audio"></audio>
+
     <div id="game-container"></div>
     <button id="game-login-btn">Go back to login</button>
   </section>
