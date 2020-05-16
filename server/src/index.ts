@@ -1,6 +1,9 @@
-import * as express from "express";
-const app = express;
+import { Server } from "./server";
 
-app.use(express.static('assets'));
+const port = parseInt(process.env.PORT ?? "5000");
 
-app.listen(3000, () => console.log('Gator app listening on port 3000!'));
+const server = new Server(port);
+
+server.listen(port => {
+    console.log(`Server is listening on http://localhost:${port}`);
+});
