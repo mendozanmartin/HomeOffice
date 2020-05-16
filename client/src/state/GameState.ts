@@ -1,7 +1,5 @@
 import AState from "./AState";
 import Demo from "../game";
-import { GetElementById } from "../util/GetElemById";
-import StateManager from "./StateManager";
 
 export default class GameState extends AState {
 
@@ -12,13 +10,9 @@ export default class GameState extends AState {
   }
 
   private game: Phaser.Game;
-  private loginBtn: HTMLButtonElement;
 
   private constructor() {
     super("game");
-
-    this.loginBtn = GetElementById('game-login-btn') as HTMLButtonElement;
-    this.loginBtn.addEventListener('click', this.goToMainMenu);
 
     // Create the game here
     const config: Phaser.Types.Core.GameConfig = {
@@ -34,12 +28,6 @@ export default class GameState extends AState {
 
   public destroy() {
     console.log('destroying game');
-    StateManager.GetInstance().Socket.leave();
-    this.loginBtn.removeEventListener('click', this.goToMainMenu);
     this.game.destroy(true);
-  }
-
-  goToMainMenu = () => {
-    StateManager.GetInstance().Pop();
   }
 }

@@ -39,33 +39,32 @@ export class Server {
             this.game.setUserRoom(socket.id, "/");
 
             socket.on("channel:join", ({ room }) => {
-                // join room
                 console.log(`${socket.id}: Socket connected to room ${room}`)
                 socket.join(room);
                 this.game.setUserRoom(socket.id, room);
-                this.game.getAllUsersInRoom(room);
-                socket.in(room).emit("user:all")
+                const users = this.game.getAllUsersInRoom(room);
+                socket.emit("user:all", users);
             });
 
             socket.on("channel:user:add", (user: IUser) => {
                 this.game.setUserDetails(socket.id, user);
                 const room = this.game.getUserRoom(socket.id);
-                console.log(`${socket.id}: Socket added user to room ${room}`)
-                socket.in(room).emit("user:added", user);
+                console.log(`${socket.id}: Socket added ${user.name} to room ${room}`)
+                this.io.in(room).emit("user:added", user);
             })
 
             socket.on("channel:leave", () => {
                 const room = this.game.getUserRoom(socket.id);
                 console.log(`${socket.id}: Socket left from ${room} for /`);
                 socket.join("/")
-                socket.in(room).emit("user:remove", { userId: socket.id })
+                this.io.in(room).emit("user:remove", { userId: socket.id })
                 this.game.setUserRoom(socket.id, "/");
             })
 
             socket.on("disconnect", () => {
                 const room = this.game.getUserRoom(socket.id);
                 console.log(`${socket.id}: Socket disconnected from ${room}`)
-                socket.in(room).emit("user:remove", { userId: socket.id })
+                this.io.in(room).emit("user:remove", { userId: socket.id })
                 this.game.removeUser(socket.id);
             });
         });

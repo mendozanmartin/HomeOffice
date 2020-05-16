@@ -13,20 +13,22 @@ class World implements SocketEvents {
     }
 
     initializeUsers(users: IUser[]): void {
+        console.log("users", users);
         this.users = users.reduce((obj, user) => {
             obj[user.id] = user;
             return obj;
         }, {});
-        console.log(this.users);
     }
 
     addUser(user: IUser): void {
         this.users[user.id] = user;
+        console.log(this.users);
     }
 
     removeUser(edit: IUser): void {
         this.users[edit.id] = undefined;
         delete this.users[edit.id];
+        console.log(this.users);
     }
 
     handleError(error: any): void {

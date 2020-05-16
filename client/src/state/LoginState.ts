@@ -1,7 +1,7 @@
 import AState from "./AState";
 import { GetElementById } from "../util/GetElemById";
 import StateManager from "./StateManager";
-import GameState from "./GameState";
+import SetupState from "./SetupState";
 
 export default class LoginState extends AState {
 
@@ -27,6 +27,6 @@ export default class LoginState extends AState {
 
   playGame = async () => {
     StateManager.GetInstance().Socket.moveToChannel(this.channelInput.value)
-    StateManager.GetInstance().Push(await GameState.Create());
+    StateManager.GetInstance().Push(new SetupState());
   }
 }
