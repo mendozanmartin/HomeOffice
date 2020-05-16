@@ -1,4 +1,6 @@
 import AState from "./AState";
+import World from "../game/World";
+import Socket from "../socket";
 
 /**
  * Website StateManager
@@ -6,18 +8,30 @@ import AState from "./AState";
  */
 export default class StateManager {
 
+    public static Initialize() {
+        const world = new World();
+        const socket = new Socket(world);
+        this.instance = new StateManager(world, socket);
+    }
+
     public static GetInstance = (): StateManager => {
         if (StateManager.instance === undefined) {
-            StateManager.instance = new StateManager();
+            throw new Error("Manager must be initialized must be ");
         }
         return StateManager.instance!;
     }
+
+    public World: World;
+    public Socket: Socket;
 
     private static instance?: StateManager;
 
     private stack: AState[] = [];
 
-    private constructor() { }
+    private constructor(world: World, socket: Socket) {
+        this.World = world;
+        this.Socket = socket;
+    }
 
     /**
      * Push a new state onto the stack
