@@ -2,31 +2,94 @@
 <html>
 
 <head>
-  <meta charset="utf-8">
-  <script src="./socket.io.slim.js"></script>
-
   <style>
     section,
     audio {
       display: none;
     }
   </style>
+  <meta charset="utf-8" />
+  <link href="https://fonts.googleapis.com/css2?family=Work+Sans&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="index.css" />
 </head>
 
 <body>
-  <section id="login">
-    <input type="text" id="login-channel" />
-    <button id="login-play">Join Channel</button>
+  <section id="login-1" class="d-flex justify-content-center ">
+    <div class="card w-50 login-modal">
+      <div class="card-body">
+        <div class="text-center">
+
+          <img src="http://via.placeholder.com/640x150" alt="" class="w-80 mt-5" />
+          <h2 class="mt-5">Enjoy the same workspace as others</h2>
+
+          <div class="form-group d-flex justify-content-center mt-5">
+            <input id="login-channel" type="text" placeholder="Start typing room id here..."
+              class="text-box form-control">
+          </div>
+        </div>
+      </div>
+    </div>
+    <button id="login-play" class="btn btn-primary">Play a game</button>
   </section>
+
+  <section id="login" class="d-flex justify-content-center">
+    <div class="card w-50 login-modal">
+      <div class="card-body">
+        <p class="text-center m-4">Entering room xxxxx</p>
+        <div class="row m-1">
+          <canvas class="col-5 bg-dark avatar-image">
+            hello
+          </canvas>
+          <div class="col-7">
+
+            <div class="form-group">
+              <input type="text" placeholder="Name" class="name-input form-control">
+            </div>
+
+            <div class="pronouns">
+              <input type="radio" id="radio1" name="radios" value="all" checked>
+              <label for="radio1">she</label>
+              <input type="radio" id="radio2" name="radios" value="false">
+              <label for="radio2">he</label>
+              <input type="radio" id="radio3" name="radios" value="true">
+              <label for="radio3">they</label>
+            </div>
+
+            <div class="mt-5">
+              <p>Choose your appearance:</p>
+              <div>
+                <button class="btn color-btn pink"></button>
+                <button class="btn color-btn blue"></button>
+                <button class="btn color-btn yellow"></button>
+                <button class="btn color-btn brown"></button>
+              </div>
+              <div></div>
+            </div>
+            <div class="d-flex justify-content-between">
+              <p>Back</p>
+              <div>
+                <p><u>Enter room and save this character</u></p>
+                <button class="btn"></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
 
   <section id="game">
     <!-- Data tags -->
     <audio id="game-audio"></audio>
 
     <div id="game-container"></div>
-    <button id="game-login-btn">Go back to login</button>
+    <button id="game-login-btn" class="btn btn-primary">
+      Go back to login
+    </button>
   </section>
-
 
   <script src="game.js"></script>
 </body>
