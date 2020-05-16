@@ -11,17 +11,20 @@ export default class GameState extends AState {
 
   private game: Phaser.Game;
 
-  private constructor() {
+  constructor() {
     super("game");
 
     // Create the game here
     const config: Phaser.Types.Core.GameConfig = {
       type: Phaser.AUTO,
-      backgroundColor: '#125555',
+      backgroundColor: "#E2EBE8",
       width: 1000,
-      height: 600,
+      height: 800,
       parent: "game-container",
-      scene: Demo
+      scene: Demo,
+      physics: {
+        default: "arcade",
+      },
     };
     this.game = new Phaser.Game(config);
   }

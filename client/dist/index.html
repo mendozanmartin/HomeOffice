@@ -3,17 +3,26 @@
 
 <head>
   <meta charset="utf-8" />
-  <script src="./socket.io.slim.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Work+Sans&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" />
-  <link rel="stylesheet" href="index.css" />
-  <style>
-    section,
-    audio {
-      display: none;
-    }
-  </style>
+  <<<<<<< HEAD <script src="./socket.io.slim.js">
+    </script>
+    =======
+
+    <style>
+      section {
+        display: none;
+      }
+    </style>
+    >>>>>>> 71db31545700c6ee0e2b72c192f03f05113e056a
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="index.css" />
+    <style>
+      section,
+      audio {
+        display: none;
+      }
+    </style>
 </head>
 
 <body>
@@ -102,18 +111,17 @@
         </div>
       </div>
     </div>
-    </div>
-    </div>
   </section>
 
   <section id="game">
-    <!-- Data tags -->
-    <audio id="game-audio"></audio>
+    <div class="m-0 p-0">
 
-    <div id="game-container"></div>
-    <button id="game-login-btn" class="btn btn-primary">
-      Go back to login
-    </button>
+      <audio id="game-audio"></audio>
+      <div id="game-container" class="m-0 p-0"></div>
+      <button id="game-login-btn" class="btn btn-primary">
+        Go back to login
+      </button>
+    </div>
   </section>
 
   <script src="game.js"></script>
