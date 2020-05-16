@@ -5,10 +5,12 @@ import GameState from "./GameState";
 
 export default class LoginState extends AState {
 
+    private channelInput: HTMLInputElement;
     private playBtn: HTMLButtonElement;
 
     constructor() {
         super("login");
+        this.channelInput = GetElementById("login-channel") as HTMLInputElement;
         this.playBtn = GetElementById('login-play') as HTMLButtonElement;
         this.playBtn.addEventListener('click', this.playGame);
     }
@@ -24,6 +26,7 @@ export default class LoginState extends AState {
     }
 
     playGame = async () => {
+        StateManager.GetInstance().Socket.moveToChannel(this.channelInput.value)
         StateManager.GetInstance().Push(await GameState.Create());
     }
 }

@@ -34,11 +34,12 @@ export default class GameState extends AState {
 
     public destroy() {
         console.log('destroying game');
-        this.loginBtn.removeEventListener('click', this.goToMainMenu)
+        this.loginBtn.removeEventListener('click', this.goToMainMenu);
         this.game.destroy(true);
     }
 
     goToMainMenu = () => {
-        StateManager.GetInstance().Pop()
+        StateManager.GetInstance().Socket.leave();
+        StateManager.GetInstance().Pop();
     }
 }
