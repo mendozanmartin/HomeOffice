@@ -1,17 +1,23 @@
-html{
+html {
   padding: 0%;
   margin: 0%;
+}
+.logo{
+  max-width: 150px;
+  margin: 0 2rem 0 0;
 }
 body {
   background-color: #f2f2f2;
   font-family: "Work Sans", sans-serif;
-  color:#3E3E3E;
+  color: #3E3E3E;
   background-color: #e2ebe8;
 }
-img{
+
+img {
   width: 100%;
   height: auto;
 }
+
 .login-modal {
   background-color: #fafafa;
   margin-top: 10vh;
@@ -20,7 +26,8 @@ img{
   border-radius: 25px;
   transition: 0.3s;
 }
-.login-modal:hover{
+
+.login-modal:hover {
   box-shadow: 3px 3px 6px #A5BCB4;
 }
 
@@ -29,17 +36,20 @@ img{
   border-radius: 10px;
   height: 50px;
 }
+
 .name-input {
   width: 70%;
   margin-left: 1.25rem;
   border: 2px solid #a5bcb4;
   background-color: transparent;
 }
+
 .name-input:focus {
   background-color: transparent;
   outline: none;
   outline-width: 0;
 }
+
 .avatar-image {
   border-radius: 10px;
 }
@@ -55,21 +65,30 @@ img{
 input[type="radio"] {
   display: none;
   margin: 10px;
+  
 }
-#login-channel{
- border-radius: 10px;
- margin-right: 1rem;
- border: 2px solid #A5BCB4;
+label[name="radius"] {
+  padding: 0;
+  margin-top: 1.2rem;
 }
-input[type="text"]:focus{
+#login-channel {
+  border-radius: 10px;
+  margin-right: 1rem;
+  border: 2px solid #A5BCB4;
+}
+
+input[type="text"]:focus {
   box-shadow: 0 0 10px #A5BCB4;
   border: 2px solid #608074;
+}
+iframe{
+  border-radius: 50%;
 }
 /*
   Change the look'n'feel of labels (which are adjacent to radiobuttons).
   Add some margin, padding to label
 */
-input[type="radio"] + label {
+input[type="radio"]+label {
   display: inline-block;
   padding: 0px;
   border-color: #ddd;
@@ -80,22 +99,23 @@ input[type="radio"] + label {
   border-width: 2px;
 }
 
-input[name="color"] + label {
+input[name="color"]+label {
   padding: 0px;
 }
 
-input[name="pronoun"] + label {
+input[name="pronoun"]+label {
   padding: 4px;
 }
 
-label{
+label {
   padding: 1rem;
 }
+
 /*
  Change background color for label next to checked radio button
  to make it look like highlighted button
 */
-input[type="radio"]:checked + label {
+input[type="radio"]:checked+label {
   background-image: none;
   color: white;
   background-color: #608074;
@@ -106,25 +126,35 @@ input[type="radio"]:checked + label {
   height: 20px;
   border-radius: 100%;
 }
-#setup-color-Pink:checked + label{
+
+#setup-color-Pink:checked+label {
   background-color: #ffbaba;
-  border-color: #ffbaba;;
+  border-color: #ffbaba;
+  ;
 }
-#setup-color-Blue:checked + label{
+
+#setup-color-Blue:checked+label {
   background-color: #b5d0f5;
-  border-color: #b5d0f5;;
+  border-color: #b5d0f5;
+  ;
 }
-#setup-color-Yellow:checked + label{
+
+#setup-color-Yellow:checked+label {
   background-color: #f4d367;
-  border-color: #f4d367;;
+  border-color: #f4d367;
+  ;
 }
-#setup-color-Brown:checked + label{
+
+#setup-color-Brown:checked+label {
   background-color: #a5bcb4;
-  border-color: #a5bcb4;;
+  border-color: #a5bcb4;
+  ;
 }
+
 .pink {
   background-color: #ffbaba;
 }
+
 .blue {
   background-color: #b5d0f5;
 }
@@ -136,51 +166,75 @@ input[type="radio"]:checked + label {
 .brown {
   background-color: #774040;
 }
+
 .btn {
   border-radius: 10px;
   border: 2px solid #a5bcb4;
 }
-.btn:hover{
+
+.btn:hover {
   background-color: #A5BCB4;
 }
-.name-input{
+
+.name-input {
   stroke: none;
   border-radius: 10px;
 }
-.characters{
-  width: 5rem; 
+
+.characters {
+  width: 5rem;
   height: auto;
   padding: 0px;
 }
-.grid{
+
+.grid {
   display: grid;
 }
-.gr-col-2{
+
+.gr-col-2 {
   grid-template-columns: 1fr 1fr;
   padding-right: 1rem;
- 
+
 }
-.gr-col-4{
+
+.gr-col-4 {
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-gap: 1rem;
+  grid-gap: 1.2rem;
+
+
 }
-.no-p{
+
+.gr-col-4>* {
+  transition: 0.3s;
+  border: 2px solid #fafafa;
+}
+
+.gr-col-4>*:hover {
+  border: 2px solid #a5bcb4;
+  border-radius: 10px;
+}
+
+.no-p {
   padding: none;
   margin-bottom: 1rem;
 }
-.add-pad{
-    padding: 1rem;
+
+.add-pad {
+  padding: 1rem;
 }
-.main-btn{
+
+.main-btn {
   background-color: #608074;
   border-color: #608074;
   color: white;
 }
-.fa-arrow-left{
+
+.fa-arrow-left {
   padding-right: 0.3rem;
 }
-.side-bar-left{
-  position:absolute;
+
+.side-bar-left {
+  position: absolute;
   left: 0;
   top: 0;
   width: 25%;
@@ -190,4 +244,3 @@ input[type="radio"]:checked + label {
   padding: 1rem;
   text-align: left;
 }
-
