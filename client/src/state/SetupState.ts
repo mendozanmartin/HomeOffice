@@ -62,7 +62,7 @@ export default class SetupState extends AState {
 
     playGame = () => {
         this.back.disabled = true;
-        (this.form.querySelector('[type="submit"]') as any).disabled = true;
+        (GetElementById("setup-submit-btn") as any).disabled = true
         const id = StateManager.GetInstance().Socket.getSocketId();
         const me = StateManager.GetInstance().World.getUserById(id);
         if (me.isHost) {

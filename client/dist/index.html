@@ -3,36 +3,61 @@
 
 <head>
   <meta charset="utf-8" />
-  <style>
+  <<<<<<< HEAD <style>
     section {
-      display: none;
+    display: none;
     }
-  </style>
-  <script src="socket.io.slim.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Work+Sans&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" />
-  <link rel="stylesheet" href="index.css" />
-  <style>
-    section,
-    audio {
-      display: none;
-    }
-  </style>
+    </style>
+    <script src="socket.io.slim.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="index.css" />
+    <style>
+      section,
+      audio {
+        display: none;
+      }
+    </style>
+    =======
+    <script src="./socket.io.slim.js">
+    </script>
+    <style>
+      section {
+        display: none;
+      }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+      integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" href="index.css" />
+    <style>
+      section,
+      audio {
+        display: none;
+      }
+    </style>
+    >>>>>>> c04a88ce7e2be9a7da9da514a616646f000587e1
 </head>
 
 <body>
   <section id="login">
     <div class="d-flex justify-content-center">
-      <div class="card w-50 login-modal">
+      <div class="card w-50 login-modal dark-login">
         <div class="card-body">
           <div class="text-center">
-            <img src="https://via.placeholder.com/640x150" alt="" class="w-80 mt-5" />
+            <<<<<<< HEAD <img src="https://via.placeholder.com/640x150" alt="" class="w-80 mt-5" />
             <h2 class="mt-5">Enjoy the same workspace as others</h2>
+            =======
+            <img src="images/items/workspace-transparent.png" alt="" class="w-80 " />
+            <h2 class="mt-5">Enjoy and share workspace</h2>
+            >>>>>>> c04a88ce7e2be9a7da9da514a616646f000587e1
             <div class="form-group d-flex justify-content-center mt-5">
-              <input id="login-channel" type="text" placeholder="Start typing room id here..."
+              <input id="login-channel" type="text" placeholder="Start typing room id here to join your coworkers..."
                 class="text-box form-control" />
-              <button id="login-play" class="btn btn-primary">Play a game</button>
+              <button id="login-play" class="btn ">enter workspace <i class="fas fa-arrow-right"></i></button>
             </div>
           </div>
         </div>
@@ -44,66 +69,72 @@
     <div class="d-flex justify-content-center">
       <div class="card w-50 login-modal">
         <div class="card-body">
-          <p id="setup-room-header" class="text-center m-4">Entering room xxxxx</p>
+          <p id="setup-room-header" class="text-center m-2">Entering room xxxx</p>
           <div class="row m-1">
-            <canvas class="col-5 bg-dark avatar-image">
-              hello
-            </canvas>
+            <img class="col-5  avatar-image" src="./images/characters/char-1.png">
             <form id="setup-form" class="col-7">
-
-              <div class="form-group">
-                <input id="setup-name-input" type="text" name="name" placeholder="Name" class="name-input form-control">
+              <div class="form-group ">
+                <input id="setup-name-input" type="text" name="name" placeholder="Your name"
+                  class="name-input form-control no-stroke">
               </div>
-
-              <div>
+              <p>Pronoun:</p>
+              <div class="d-inline-flex pronouns">
                 <div class="form-check">
                   <input id="setup-pro-she" class="form-check-input" type="radio" name="pronoun" value="she" checked />
-                  <label class="form-check-label" for="setup-pro-she">SHE</label>
+                  <label class="form-check-label" for="setup-pro-she">she/her</label>
                 </div>
 
                 <div class="form-check">
                   <input id="setup-pro-he" class="form-check-input" type="radio" name="pronoun" value="he" checked />
-                  <label class="form-check-label" for="setup-pro-he">HE</label>
+                  <label class="form-check-label" for="setup-pro-he">he/him</label>
                 </div>
 
                 <div class="form-check">
                   <input id="setup-pro-they" class="form-check-input" type="radio" name="pronoun" value="they"
                     checked />
-                  <label class="form-check-label" for="setup-pro-they">THEY</label>
+                  <label class="form-check-label" for="setup-pro-they">they/them</label>
                 </div>
               </div>
 
               <div class="mt-5">
                 <p>Choose your appearance:</p>
-                <div class="form-check">
-                  <input id="setup-color-Pink" class="form-check-input pink" type="radio" name="color" value="#FFC0CB"
-                    checked />
-                  <label class="form-check-label" for="setup-color-Pink">Pink</label>
+                <div class="form-check ">
+                  <input id="setup-color-Pink" class="form-check-input pink characters" type="radio" name="color"
+                    value="#FFC0CB" checked />
+                  <label class="form-check-label no-p" for="setup-color-Pink">
+                    <img src="./images/characters/char-1-preview.png">
+                  </label>
                 </div>
                 <div class="form-check">
-                  <input id="setup-color-Blue" class="form-check-input blue" type="radio" name="color"
+                  <input id="setup-color-Blue" class="form-check-input blue characters" type="radio" name="color"
                     value="#0000ff" />
-                  <label class="form-check-label" for="setup-color-Blue">Blue</label>
+                  <label class="form-check-label no-p" for="setup-color-Blue">
+                    <img src="./images/characters/char-2-preview.png">
+                  </label>
                 </div>
                 <div class="form-check">
                   <input id="setup-color-Yellow" class="form-check-input yellow" type="radio" name="color"
                     value="#ffff00" />
-                  <label class="form-check-label" for="setup-color-Yellow">Yellow</label>
+                  <label class="form-check-label no-p" for="setup-color-Yellow">
+                    <img src="./images/characters/char-3-preview.png" class="characters">
+                  </label>
                 </div>
                 <div class="form-check">
-                  <input id="setup-color-Brown" class="form-check-input brown" type="radio" name="color"
+                  <input id="setup-color-Brown" class="form-check-input brown characters" type="radio" name="color"
                     value="#964B00" />
-                  <label class="form-check-label" for="setup-color-Brown">Brown</label>
-                </div>
-              </div>
-              <div class="d-flex justify-content-between">
-                <button id="setup-back">Back</button>
-                <div>
-                  <p><u>Enter room and save this character</u></p>
-                  <button type="submit" class="btn">Enter Room</button>
+                  <label class="form-check-label no-p" for="setup-color-Brown">
+                    <img src="./images/characters/char-4-preview.png">
+                  </label>
                 </div>
               </div>
             </form>
+          </div>
+          <div class="container">
+            <button id="setup-back" class="btn row">Back</button>
+            <div class="row">
+              <p><u>Enter room and save this character</u></p>
+              <button id="setup-submit-btn" type="submit" class="btn">Enter Room</button>
+            </div>
           </div>
         </div>
       </div>

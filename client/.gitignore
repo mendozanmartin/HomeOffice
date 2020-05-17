@@ -16,3 +16,4 @@ dist/*
 !dist/index.html
 !dist/socket.io.slim.js
 !dist/index.css
+!dist/images 
