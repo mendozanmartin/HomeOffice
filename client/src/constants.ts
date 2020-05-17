@@ -1,1 +1,1 @@
-export const SERVER = "http://localhost:5000"
+export const SERVER = "https://192.168.0.19:5000"

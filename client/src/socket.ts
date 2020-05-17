@@ -49,12 +49,12 @@ class Socket {
         this.socket.emit("channel:user:add", user);
     }
 
-    public offerCall(userId: string, offer: RTCSessionDescriptionInit) {
-        this.socket.emit("channel:user:offerCall", { userId, offer })
+    public offerCall(userId: string, offer: RTCSessionDescription) {
+        this.socket.emit("channel:user:offerCall", { userId, offer: offer.toJSON() })
     }
 
     public answerCall(hostId: string, answer: RTCSessionDescriptionInit) {
-        this.socket.emit("channel:user:answerCall", { userId: hostId, answer })
+        this.socket.emit("channel:user:answerCall", { userId: hostId, answer: answer })
     }
 
     public leave() {

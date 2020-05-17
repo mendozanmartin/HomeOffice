@@ -46,7 +46,7 @@ export default class StateManager implements WorldEvents {
     joinCall(answer: IAnswerCall) {
         this.RTCManager.joinCall(answer)
             .then(() => console.log('success'))
-            .catch(() => console.log('error'));
+            .catch((e) => console.log(e));
     }
 
     answerCall(offer: IJoinCall) {
@@ -56,14 +56,14 @@ export default class StateManager implements WorldEvents {
             return;
         }
         this.RTCManager.setupRemoteRemoveDescription(offer.offer)
-            .then(answer => {
+            .then(() => {
                 this.RTCManager.requestAudio()
                     .then(() => {
                         this.RTCManager.createAnswer()
                             .then(answer => {
                                 this.RTCManager.setupLocalDescription(answer)
                                     .then(() => {
-                                        this.Socket.answerCall(offer.hostId, answer)
+                                        this.Socket.answerCall(offer.hostId, this.RTCManager.peerConnection.localDescription)
                                     })
                             })
                     })
@@ -85,7 +85,7 @@ export default class StateManager implements WorldEvents {
         this.RTCManager.makeOffer()
             .then(offer => {
                 this.RTCManager.setupLocalDescription(offer)
-                    .then(() => this.Socket.offerCall(user.id, offer))
+                    .then(() => this.Socket.offerCall(user.id, new RTCSessionDescription(offer)))
                     .catch(() => console.log('something happened'))
             })
     }

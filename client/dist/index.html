@@ -3,26 +3,22 @@
 
 <head>
   <meta charset="utf-8" />
-  <<<<<<< HEAD <script src="./socket.io.slim.js">
-    </script>
-    =======
-
-    <style>
-      section {
-        display: none;
-      }
-    </style>
-    >>>>>>> 71db31545700c6ee0e2b72c192f03f05113e056a
-    <link href="https://fonts.googleapis.com/css2?family=Work+Sans&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="index.css" />
-    <style>
-      section,
-      audio {
-        display: none;
-      }
-    </style>
+  <style>
+    section {
+      display: none;
+    }
+  </style>
+  <script src="socket.io.slim.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Work+Sans&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="index.css" />
+  <style>
+    section,
+    audio {
+      display: none;
+    }
+  </style>
 </head>
 
 <body>
@@ -31,7 +27,7 @@
       <div class="card w-50 login-modal">
         <div class="card-body">
           <div class="text-center">
-            <img src="http://via.placeholder.com/640x150" alt="" class="w-80 mt-5" />
+            <img src="https://via.placeholder.com/640x150" alt="" class="w-80 mt-5" />
             <h2 class="mt-5">Enjoy the same workspace as others</h2>
             <div class="form-group d-flex justify-content-center mt-5">
               <input id="login-channel" type="text" placeholder="Start typing room id here..."
@@ -100,13 +96,14 @@
                   <label class="form-check-label" for="setup-color-Brown">Brown</label>
                 </div>
               </div>
-          </div>
-          <div class="d-flex justify-content-between">
-            <button id="setup-back">Back</button>
-            <div>
-              <p><u>Enter room and save this character</u></p>
-              <button type="submit" class="btn">Enter Room</button>
-            </div>
+              <div class="d-flex justify-content-between">
+                <button id="setup-back">Back</button>
+                <div>
+                  <p><u>Enter room and save this character</u></p>
+                  <button type="submit" class="btn">Enter Room</button>
+                </div>
+              </div>
+            </form>
           </div>
         </div>
       </div>
@@ -115,6 +112,12 @@
 
   <section id="game">
     <div class="m-0 p-0">
+
+      <video width="150" height="70" id="received_video" autoplay></video>
+      <video width="150" height="70" id="local_video" autoplay muted></video>
+
+      <audio id="remote-audio" autoplay></audio>
+      <audio id="local-audio" muted autoplay></audio>
 
       <audio id="game-audio"></audio>
       <div id="game-container" class="m-0 p-0"></div>

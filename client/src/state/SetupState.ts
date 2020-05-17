@@ -61,15 +61,19 @@ export default class SetupState extends AState {
     }
 
     playGame = () => {
+        this.back.disabled = true;
+        (this.form.querySelector('[type="submit"]') as any).disabled = true;
         const id = StateManager.GetInstance().Socket.getSocketId();
         const me = StateManager.GetInstance().World.getUserById(id);
         if (me.isHost) {
             StateManager.GetInstance().requestMicrophoneAccess()
-                .then(async () => {
-                    StateManager.GetInstance().Push(await GameState.Create());
+                .then(() => {
+                    StateManager.GetInstance().Push(GameState.Create());
                 }).catch(e => {
                     console.log(e);
                 });
+        } else {
+            StateManager.GetInstance().Push(GameState.Create());
         }
     }
 }

@@ -3,9 +3,9 @@ import Demo from "../game";
 
 export default class GameState extends AState {
 
-  public static async Create(): Promise<GameState> {
+  public static Create(): GameState {
     const game = new GameState();
-    const result = Promise.resolve(game);
+    const result = game;
     return result;
   }
 
