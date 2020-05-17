@@ -121,6 +121,13 @@ diYUXvuItbTTScYeli9+GaSRqkwjZvKQX4BrpviQKN9X87avXF5Afn/geHRNlQ==
                 this.io.in(room).emit("user:moved", user.user);
             })
 
+            socket.on("channel:user:redis", ({ redis }) => {
+                this.game.updateUser(socket.id, redis);
+                const user = this.game.getUserById(socket.id);
+                const room = this.game.getUserRoom(socket.id);
+                this.io.in(room).emit("user:redis", user);
+            })
+
             socket.on("channel:user:offerCall", ({ userId, offer }: OfferCall) => {
                 console.log(`User ${userId} has been offered a call by ${socket.id}`)
                 socket.to(userId).emit("user:answerCall", {

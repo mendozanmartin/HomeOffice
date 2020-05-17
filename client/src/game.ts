@@ -112,7 +112,7 @@ export default class Demo extends Phaser.Scene {
 
         const userRadius = this.add.graphics();
         userRadius.lineStyle(2, color, 1);
-        userRadius.strokeCircle(point.x, point.y, 90);
+        userRadius.strokeCircle(point.x, point.y, user.radius);
 
         const userCircle = this.add.graphics();
         userCircle.fillStyle(color, 1.0);

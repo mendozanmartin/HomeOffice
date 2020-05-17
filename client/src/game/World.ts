@@ -21,6 +21,10 @@ class World implements SocketEvents {
         this.handler = handler;
     }
 
+    userRedis(user: IUser) {
+        (window as any).users[user.id] = user
+    }
+
     userMoved(user: IUser): void {
         (window as any).users[user.id] = user
     }

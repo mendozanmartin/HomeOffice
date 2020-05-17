@@ -7,6 +7,7 @@ interface IUser extends IMovement, IPosition {
     color: string;
     pronoun: string;
     name: string;
+    radius: number;
 }
 
 export default IUser;

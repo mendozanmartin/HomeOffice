@@ -5,6 +5,7 @@ interface IUser extends IMovement {
   color: string;
   pronoun: string;
   isHost: boolean;
+  radius: number;
   name: string;
   x: number;
   y: number;

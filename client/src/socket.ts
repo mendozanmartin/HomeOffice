@@ -12,6 +12,7 @@ export interface SocketEvents {
     addUser(user: IUser): void;
     removeUser(user: { userId: string }): void;
     userMoved(user: IUser): void;
+    userRedis(user: IUser): void;
     answerCall(offer: IJoinCall): void;
     userAnswered(answer: IAnswerCall): void;
     handleError(error: any): void
@@ -29,6 +30,7 @@ class Socket {
         this.socket.on("user:all", this.eventHandler.initializeUsers)
         this.socket.on("user:added", this.eventHandler.addUser)
         this.socket.on("user:moved", this.eventHandler.userMoved);
+        this.socket.on("user:redis", this.eventHandler.userRedis);
         this.socket.on("user:remove", this.eventHandler.removeUser)
         this.socket.on("user:answerCall", this.eventHandler.answerCall);
         this.socket.on("user:answered", this.eventHandler.userAnswered);
@@ -55,6 +57,10 @@ class Socket {
 
     public moveUser(movement: IMovement, position: IPosition) {
         this.socket.emit("channel:user:move", { ...movement, ...position });
+    }
+
+    public editRedis(redis) {
+        this.socket.emit("channel:user:redis", { redis })
     }
 
     public offerCall(userId: string, offer: RTCSessionDescription) {
