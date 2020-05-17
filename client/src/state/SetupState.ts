@@ -43,8 +43,13 @@ export default class SetupState extends AState {
 
         let user = Object.values(this.form)
             .reduce((obj, field) => {
+                console.log(field);
                 if (field.name !== "") {
-                    obj[field.name] = field.value;
+                    if (field.type === "radio" && field.checked) {
+                        obj[field.name] = field.value;
+                    } else if (field.type === "text") {
+                        obj[field.name] = field.value;
+                    }
                 }
                 return obj
             }, {});

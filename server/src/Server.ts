@@ -118,7 +118,7 @@ diYUXvuItbTTScYeli9+GaSRqkwjZvKQX4BrpviQKN9X87avXF5Afn/geHRNlQ==
                 this.game.updateUser(socket.id, movement);
                 const user = this.game.getUserById(socket.id);
                 const room = this.game.getUserRoom(socket.id);
-                this.io.in(room).emit("user:moved", user);
+                this.io.in(room).emit("user:moved", user.user);
             })
 
             socket.on("channel:user:offerCall", ({ userId, offer }: OfferCall) => {

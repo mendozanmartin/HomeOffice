@@ -54,10 +54,16 @@ class World implements SocketEvents {
         this.handler.addUser((window as any).users[user.id]);
     }
 
-    removeUser(edit: IUser): void {
-        (window as any).users[edit.id] = undefined;
-        delete (window as any).users[edit.id];
-        console.log((window as any).users);
+    removeUser({ userId }: { userId: string }): void {
+        const u = Object.keys((window as any).users)
+            .map(k => (window as any).users[k])
+            .filter(u => u.id !== userId)
+            .reduce((obj, user) => {
+                obj[user.id] = user;
+                return obj;
+            }, {});
+        (window as any).users = u;
+        console.log("removed", u);
     }
 
     getUserById(id: string): IUser {

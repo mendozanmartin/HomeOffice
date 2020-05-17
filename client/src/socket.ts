@@ -3,13 +3,14 @@ import IUser from './models/IUser';
 import IJoinCall from './models/ICall';
 import IAnswerCall from './models/IAnswer';
 import IMovement from './models/IMovement';
+import IPosition from './models/IPosition';
 
 type SocketEvent<T> = [string, IUser]
 
 export interface SocketEvents {
     initializeUsers(users: IUser[]): void;
     addUser(user: IUser): void;
-    removeUser(user: IUser): void;
+    removeUser(user: { userId: string }): void;
     userMoved(user: IUser): void;
     answerCall(offer: IJoinCall): void;
     userAnswered(answer: IAnswerCall): void;
@@ -52,8 +53,8 @@ class Socket {
         this.socket.emit("channel:user:add", user);
     }
 
-    public moveUser(movement: IMovement) {
-        this.socket.emit("channel:user:move", movement);
+    public moveUser(movement: IMovement, position: IPosition) {
+        this.socket.emit("channel:user:move", { ...movement, ...position });
     }
 
     public offerCall(userId: string, offer: RTCSessionDescription) {
