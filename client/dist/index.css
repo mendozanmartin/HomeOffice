@@ -2,10 +2,12 @@ html {
   padding: 0%;
   margin: 0%;
 }
-.logo{
+
+.logo {
   max-width: 150px;
   margin: 0 2rem 0 0;
 }
+
 body {
   background-color: #f2f2f2;
   font-family: "Work Sans", sans-serif;
@@ -58,6 +60,12 @@ img {
   text-align: center;
 }
 
+#game-container {
+  width: 75% !important;
+  float: right !important;
+  height: 100vh !important;
+}
+
 /*
   Hide radio button (the round disc)
   we will use just the label to create pushbutton effect
@@ -65,12 +73,14 @@ img {
 input[type="radio"] {
   display: none;
   margin: 10px;
-  
+
 }
+
 label[name="radius"] {
   padding: 0;
   margin-top: 1.2rem;
 }
+
 #login-channel {
   border-radius: 10px;
   margin-right: 1rem;
@@ -81,9 +91,11 @@ input[type="text"]:focus {
   box-shadow: 0 0 10px #A5BCB4;
   border: 2px solid #608074;
 }
-iframe{
+
+iframe {
   border-radius: 50%;
 }
+
 /*
   Change the look'n'feel of labels (which are adjacent to radiobuttons).
   Add some margin, padding to label

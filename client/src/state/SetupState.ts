@@ -43,8 +43,13 @@ export default class SetupState extends AState {
 
         let user = Object.values(this.form)
             .reduce((obj, field) => {
+                console.log(field);
                 if (field.name !== "") {
-                    obj[field.name] = field.value;
+                    if (field.type === "radio" && field.checked) {
+                        obj[field.name] = field.value;
+                    } else if (field.type === "text") {
+                        obj[field.name] = field.value;
+                    }
                 }
                 return obj
             }, {});
@@ -60,8 +65,21 @@ export default class SetupState extends AState {
         StateManager.GetInstance().Pop();
     }
 
-    playGame = async () => {
-        // StateManager.GetInstance().Socket.addUser();
-        StateManager.GetInstance().Push(await GameState.Create());
+    playGame = () => {
+        this.back.disabled = true;
+        (GetElementById("setup-submit-btn") as any).disabled = true
+        const id = StateManager.GetInstance().Socket.getSocketId();
+        const me = StateManager.GetInstance().World.getUserById(id);
+        console.log("me", me);
+        if (me.isHost) {
+            StateManager.GetInstance().requestMicrophoneAccess()
+                .then(() => {
+                    StateManager.GetInstance().Push(GameState.Create());
+                }).catch(e => {
+                    console.log(e);
+                });
+        } else {
+            StateManager.GetInstance().Push(GameState.Create());
+        }
     }
 }

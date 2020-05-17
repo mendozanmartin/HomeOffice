@@ -16,6 +16,12 @@ class Audio {
 
     }
 
+    public async connect() {
+        const peerConnection = new RTCPeerConnection();
+        const offer = await peerConnection.createOffer();
+        await peerConnection.setLocalDescription(new RTCSessionDescription(offer));
+    }
+
     private streamMedia = (stream: MediaStream) => {
         // const audioTracks = stream.getAudioTracks();
         const audio = document.getElementById(this.audioId) as HTMLAudioElement;

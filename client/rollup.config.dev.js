@@ -20,7 +20,8 @@ export default {
         name: 'MyGame',
         format: 'iife',
         sourcemap: true,
-        intro: 'var global = window;'
+        intro: 'var global = window;',
+        globals: ['io']
     },
 
     plugins: [
@@ -66,6 +67,6 @@ export default {
                 'Access-Control-Allow-Origin': '*'
             }
         })
-
-    ]
+    ],
+    external: ['io'], // <-- suppresses the warning
 };

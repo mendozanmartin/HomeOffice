@@ -3,13 +3,7 @@
 
 <head>
   <meta charset="utf-8" />
-  <script src="./socket.io.slim.js">
-  </script>
-  <style>
-    section {
-      display: none;
-    }
-  </style>
+  <script src="./socket.io.slim.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Work+Sans&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" />
@@ -111,14 +105,16 @@
                   </label>
                 </div>
               </div>
+            </form>
           </div>
           <div class="grid gr-col-2 mt-5">
             <div>
               <button id="setup-back" class="btn w-20"><i class="fas fa-arrow-left"></i>back</button>
             </div>
             <div>
-              <button type="submit" class="btn  main-btn float-right" id="enter-room">enter room <i
-                  class="fas fa-arrow-right"></i></button>
+              <button type="submit" class="btn  main-btn float-right" form="setup-form" id="setup-submit-btn">enter room
+                <i class="fas fa-arrow-right"></i>
+              </button>
             </div>
 
           </div>
@@ -128,55 +124,64 @@
   </section>
 
   <section id="game">
-    <iframe src="https://gifer.com/embed/XVo6" width=100 height=100.000 frameBorder="0" allowFullScreen></iframe>
-      <div class="navigation">
-        <div class="side-bar-left">
-          <img src="./images/WorkSpacesLogo.svg" class="w-25">
-          <div class="grid gr-col-2">
-            <img id="avatar-to-display" src="./images/characters/char-1.png">
-            <div class="mt-5">
-              <h3 id="name-display">User</h3>
-              <button class="btn" id="mic" value="0"> <i class="fas fa-microphone" id="mic-icon"></i></button>
-              <form>
-                <div class="form-group">
-                  <label for="formControlRange" name="radius">My hearing radius</label>
-                  <input type="range" class="form-control-range" id="formControlRange">
-                </div>
-              </form>
-            </div>
+    <!-- <iframe src="https://gifer.com/embed/XVo6" width=100 height=100.000 frameBorder="0" allowFullScreen></iframe> -->
+    <div class="navigation">
+      <div class="side-bar-left">
+        <img src="./images/WorkSpacesLogo.svg" class="w-25">
+        <div class="grid gr-col-2">
+          <img id="avatar-to-display" src="./images/characters/char-1.png">
+          <div class="mt-5">
+            <h3 id="name-display">User</h3>
+            <button class="btn" id="mic" value="0"> <i class="fas fa-microphone" id="mic-icon"></i></button>
+            <form>
+              <div class="form-group">
+                <label for="formControlRange" name="radius">My hearing radius</label>
+                <input type="range" class="form-control-range" id="formControlRange">
+              </div>
+            </form>
           </div>
-          <div class="m-around-10">
+        </div>
+
+        <div class="m-around-10">
+          <div class="form-group ">
+            <label for="formControlRange">My hearing radius</label>
+            <input id="game-redis" min="30" max="250" type="range" class="form-control-range" id="formControlRange">
           </div>
-          <p class="mt-5">Inventory: drag and drop into the workspace</p>
-          <div class="grid gr-col-4">
-            <img src="./images/items/computer.png">
-            <img src="./images/items/computer-2.png">
-            <img src="./images/items/cup.png">
-            <img src="./images/items/headphones.png">
-            <img src="./images/items/note-book.png">
-            <img src="./images/items/plant-large.png">
-            <img src="./images/items/small-plant.png">
-            <img src="./images/items/table.png">
-            <img src="./images/items/table-2.png">
-            <img src="./images/items/table-3.png">
-            <img src="./images/items/chair.png">
-            <img src="./images/items/chair-2.png">
+
+        </div>
+        <p class="mt-5">Inventory: drag and drop into the workspace</p>
+        <div class="grid gr-col-4">
+          <img src="./images/items/computer.png">
+          <img src="./images/items/computer-2.png">
+          <img src="./images/items/cup.png">
+          <img src="./images/items/headphones.png">
+          <img src="./images/items/note-book.png">
+          <img src="./images/items/plant-large.png">
+          <img src="./images/items/small-plant.png">
+          <img src="./images/items/table.png">
+          <img src="./images/items/table-2.png">
+          <img src="./images/items/table-3.png">
+          <img src="./images/items/chair.png">
+          <img src="./images/items/chair-2.png">
+        </div>
+        <div class="grid gr-col-2 mt-5">
+          <div class="float-left">
+            <button id="game-login-btn" class="btn">
+              back to login
+            </button>
           </div>
-          <div class="grid gr-col-2 mt-5">
-            <div class="float-left">
-              <button id="game-login-btn" class="btn">
-                back to login
-              </button>
-            </div>
-            <div>
-              <button class="btn float-right">exit <i class="fas fa-sign-out-alt"></i></button>
-            </div>
+          <div>
+            <button class="btn float-right">exit <i class="fas fa-sign-out-alt"></i></button>
           </div>
         </div>
       </div>
-      <audio id="game-audio"></audio>
-      <div id="game-container" class="m-0 p-0">
-      </div>
+    </div>
+
+    <audio id="remote-audio" autoplay></audio>
+    <audio id="local-audio" muted autoplay></audio>
+
+    <audio id="game-audio"></audio>
+    <div id="game-container" class="m-0 p-0">
     </div>
   </section>
   <script src="game.js"></script>
@@ -198,7 +203,7 @@
       document.getElementById("display-char").src = "./images/characters/char-4.png";
       document.getElementById("avatar-to-display").src = "./images/characters/char-4.png";
     });
-    document.getElementById("enter-room").addEventListener("click", function () {
+    document.getElementById("setup-submit-btn").addEventListener("click", function () {
       document.getElementById("name-display").innerHTML = document.getElementById("setup-name-input").value;
     });
     document.getElementById("mic").addEventListener("click", function () {
