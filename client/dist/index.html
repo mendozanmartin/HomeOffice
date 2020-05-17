@@ -5,6 +5,7 @@
   <meta charset="utf-8" />
   <script src="./socket.io.slim.js">
   </script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   <style>
     section {
       display: none;
@@ -125,9 +126,55 @@
 
   <section id="game">
     <div class="m-0 p-0">
+      <div class="navigation">
+        <div class="side-bar-left">
+          <div class="grid gr-col-2">
+            <img id="avatar-to-display" src="./images/characters/char-1.png">
+            <div>
+              <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Dropdown button
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item" href="#">Action</a>
+                  <a class="dropdown-item" href="#">Another action</a>
+                  <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="m-around-10">
+          <form>
+            <div class="form-group ">
+              <label for="formControlRange">My hearing radius</label>
+              <input type="range" class="form-control-range" id="formControlRange" >
+            </div>
+          </form>
+        </div>
+          <p class="mt-5">Inventory: drag and drop into the workspace</p>
+          <div class="grid gr-col-4">
+            <img src="./images/items/computer.png">
+            <img src="./images/items/computer-2.png">
+            <img src="./images/items/cup.png">
+            <img src="./images/items/headphones.png">
+            <img src="./images/items/note-book.png">
+            <img src="./images/items/plant-large.png">
+            <img src="./images/items/small-plant.png">
+            <img src="./images/items/table.png">
+            <img src="./images/items/table-2.png">
+            <img src="./images/items/table-3.png">
+            <img src="./images/items/chair.png">
+            <img src="./images/items/chair-2.png">
+          
+        </div>
+        </div>
+      </div>
 
       <audio id="game-audio"></audio>
-      <div id="game-container" class="m-0 p-0"></div>
+      <div id="game-container" class="m-0 p-0">
+
+      </div>
       <button id="game-login-btn" class="btn btn-primary">
         Go back to login
       </button>
@@ -139,17 +186,22 @@
     //////changing image js
     document.getElementById("setup-color-Pink").addEventListener("click", function () {
       document.getElementById("display-char").src = "./images/characters/char-1.png";
+      document.getElementById("avatar-to-display").src = "./images/characters/char-1.png";
     });
     document.getElementById("setup-color-Blue").addEventListener("click", function () {
       document.getElementById("display-char").src = "./images/characters/char-2.png";
+      document.getElementById("avatar-to-display").src = "./images/characters/char-2.png";
     });
     document.getElementById("setup-color-Yellow").addEventListener("click", function () {
       document.getElementById("display-char").src = "./images/characters/char-3.png";
+      document.getElementById("avatar-to-display").src = "./images/characters/char-3.png";
     });
     document.getElementById("setup-color-Brown").addEventListener("click", function () {
       document.getElementById("display-char").src = "./images/characters/char-4.png";
+      document.getElementById("avatar-to-display").src = "./images/characters/char-4.png";
     });
   </script>
+
 </body>
 
 </html>
