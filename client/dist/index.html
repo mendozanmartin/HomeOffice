@@ -42,71 +42,76 @@
       <div class="card w-50 login-modal">
         <div class="card-body">
           <p id="setup-room-header" class="text-center m-2">Entering room xxxx</p>
-          <div class="row m-1">
-            <img class="col-5  avatar-image" src="./images/characters/char-1.png">
+          <div class="row mt-5">
+            <img class="col-5 avatar-image" id="display-char" src="./images/characters/char-1.png">
             <form id="setup-form" class="col-7">
-              <div class="form-group ">
-                <input id="setup-name-input" type="text" name="name" placeholder="Your name"
-                  class="name-input form-control no-stroke">
+              <div>
+                <p>Start typing your name:</p>
+                <div class="form-group">
+                  <input id="setup-name-input" type="text" name="name" placeholder="Your name"
+                    class="name-input text-box form-control">
+                </div>
               </div>
               <p>Pronoun:</p>
-              <div class="d-inline-flex pronouns">
-                <div class="form-check">
+              <div class="d-inline-flex ">
+                <div class="form-check pronouns">
                   <input id="setup-pro-she" class="form-check-input" type="radio" name="pronoun" value="she" checked />
-                  <label class="form-check-label" for="setup-pro-she">she/her</label>
+                  <label class="form-check-label add-pad" for="setup-pro-she">she/her</label>
                 </div>
 
-                <div class="form-check">
+                <div class="form-check pronouns">
                   <input id="setup-pro-he" class="form-check-input" type="radio" name="pronoun" value="he" checked />
-                  <label class="form-check-label" for="setup-pro-he">he/him</label>
+                  <label class="form-check-label add-pad" for="setup-pro-he">he/him</label>
                 </div>
 
-                <div class="form-check">
+                <div class="form-check pronouns">
                   <input id="setup-pro-they" class="form-check-input" type="radio" name="pronoun" value="they"
                     checked />
-                  <label class="form-check-label" for="setup-pro-they">they/them</label>
+                  <label class="form-check-label add-pad" for="setup-pro-they">they/them</label>
                 </div>
               </div>
-
-              <div class="mt-5">
-                <p>Choose your appearance:</p>
-                <div class="form-check ">
+              <p class="mt-4">Choose your appearance:</p>
+              <div class="grid gr-col-2 w-50">
+                <div class="form-check to-check">
                   <input id="setup-color-Pink" class="form-check-input pink characters" type="radio" name="color"
                     value="#FFC0CB" checked />
                   <label class="form-check-label no-p" for="setup-color-Pink">
-                    <img src="./images/characters/char-1-preview.png">
+                    <img src="./images/characters/char-1-preview.png" class="characters">
                   </label>
                 </div>
-                <div class="form-check">
+                <div class="form-check to-check">
                   <input id="setup-color-Blue" class="form-check-input blue characters" type="radio" name="color"
                     value="#0000ff" />
                   <label class="form-check-label no-p" for="setup-color-Blue">
-                    <img src="./images/characters/char-2-preview.png">
+                    <img src="./images/characters/char-2-preview.png" class="characters">
                   </label>
                 </div>
-                <div class="form-check">
+                <div class="form-check to-check">
                   <input id="setup-color-Yellow" class="form-check-input yellow" type="radio" name="color"
                     value="#ffff00" />
                   <label class="form-check-label no-p" for="setup-color-Yellow">
                     <img src="./images/characters/char-3-preview.png" class="characters">
                   </label>
                 </div>
-                <div class="form-check">
+                <div class="form-check to-check">
                   <input id="setup-color-Brown" class="form-check-input brown characters" type="radio" name="color"
-                    value="#964B00" />
+                    value="#a5bcb4" />
                   <label class="form-check-label no-p" for="setup-color-Brown">
-                    <img src="./images/characters/char-4-preview.png">
+                    <img src="./images/characters/char-4-preview.png" class="characters">
                   </label>
                 </div>
               </div>
             </form>
           </div>
-          <div class="container">
-            <button id="setup-back" class="btn row">Back</button>
-            <div class="row">
-              <p><u>Enter room and save this character</u></p>
-              <button id="setup-submit-btn" type="submit" form="setup-form" class="btn">Enter Room</button>
+          <div class="grid gr-col-2 mt-5">
+            <div>
+              <button id="setup-back" class="btn w-20"><i class="fas fa-arrow-left"></i>back</button>
             </div>
+            <div>
+              <button type="submit" class="btn  main-btn float-right">enter room <i
+                  class="fas fa-arrow-right"></i></button>
+            </div>
+
           </div>
         </div>
       </div>
@@ -128,6 +133,21 @@
   </section>
 
   <script src="game.js"></script>
+  <script>
+    //////changing image js
+    document.getElementById("setup-color-Pink").addEventListener("click", function () {
+      document.getElementById("display-char").src = "./images/characters/char-1.png";
+    });
+    document.getElementById("setup-color-Blue").addEventListener("click", function () {
+      document.getElementById("display-char").src = "./images/characters/char-2.png";
+    });
+    document.getElementById("setup-color-Yellow").addEventListener("click", function () {
+      document.getElementById("display-char").src = "./images/characters/char-3.png";
+    });
+    document.getElementById("setup-color-Brown").addEventListener("click", function () {
+      document.getElementById("display-char").src = "./images/characters/char-4.png";
+    });
+  </script>
 </body>
 
 </html>

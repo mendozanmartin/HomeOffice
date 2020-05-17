@@ -27,10 +27,10 @@ img{
   height: 50px;
 }
 .name-input {
-  width: 100%;
-  font-size: 40px;
+  width: 70%;
+  margin-left: 1.25rem;
+  border: 2px solid #a5bcb4;
   background-color: transparent;
-  border: 0px;
 }
 .name-input:focus {
   background-color: transparent;
@@ -69,17 +69,25 @@ input[type="text"]:focus{
 */
 input[type="radio"] + label {
   display: inline-block;
-  margin: -2px;
   padding: 0px;
   border-color: #ddd;
   cursor: pointer;
   border-radius: 10px;
-  border-color: black;
+  border-color: #a5bcb4;
   border-style: solid;
-  border-width: 0.5px;
+  border-width: 2px;
 }
-.pronouns > *{
-  padding: 6px 12px;
+
+input[name="color"] + label {
+  padding: 0px;
+}
+
+input[name="pronoun"] + label {
+  padding: 4px;
+}
+
+label{
+  padding: 1rem;
 }
 /*
  Change background color for label next to checked radio button
@@ -87,14 +95,30 @@ input[type="radio"] + label {
 */
 input[type="radio"]:checked + label {
   background-image: none;
-  background-color: #d0d0d0;
-  border: 0px;
+  color: white;
+  background-color: #608074;
 }
 
 .color-button {
   width: 20px;
   height: 20px;
   border-radius: 100%;
+}
+#setup-color-Pink:checked + label{
+  background-color: #ffbaba;
+  border-color: #ffbaba;;
+}
+#setup-color-Blue:checked + label{
+  background-color: #b5d0f5;
+  border-color: #b5d0f5;;
+}
+#setup-color-Yellow:checked + label{
+  background-color: #f4d367;
+  border-color: #f4d367;;
+}
+#setup-color-Brown:checked + label{
+  background-color: #a5bcb4;
+  border-color: #a5bcb4;;
 }
 .pink {
   background-color: #ffbaba;
@@ -119,18 +143,33 @@ input[type="radio"]:checked + label {
 }
 .name-input{
   stroke: none;
+  border-radius: 10px;
 }
 .characters{
-  width: 2rem; 
+  width: 5rem; 
   height: auto;
   padding: 0px;
 }
 .grid{
   display: grid;
 }
-.col-2{
+.gr-col-2{
   grid-template-columns: 1fr 1fr;
+  padding-right: 1rem;
+ 
 }
 .no-p{
   padding: none;
+  margin-bottom: 1rem;
+}
+.add-pad{
+    padding: 1rem;
+}
+.main-btn{
+  background-color: #608074;
+  border-color: #608074;
+  color: white;
+}
+.fa-arrow-left{
+  padding-right: 0.3rem;
 }
