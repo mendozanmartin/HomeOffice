@@ -31,7 +31,11 @@
         <div class="card-body">
           <div class="text-center">
             <img src="images/items/workspace-transparent.png" alt="" class="w-80 " />
-            <h2 class="mt-5">Enjoy and share workspace</h2>
+            <div class="d-inline-flex mt-5">
+              <img class="logo" src="./images/WorkSpacesLogo.svg">
+              <h2>Enjoy and share workspace</h2>
+            </div>
+
             <div class="form-group d-flex justify-content-center mt-5">
               <input id="login-channel" type="text" placeholder="Start typing room id here to join your coworkers..."
                 class="text-box form-control" />
@@ -54,7 +58,7 @@
               <div>
                 <p>Start typing your name:</p>
                 <div class="form-group">
-                  <input id="setup-name-input" type="text" name="name" placeholder="Your name"
+                  <input id="setup-name-input" type="text" name="name" value="User" placeholder="Your name"
                     class="name-input text-box form-control">
                 </div>
               </div>
@@ -113,7 +117,7 @@
               <button id="setup-back" class="btn w-20"><i class="fas fa-arrow-left"></i>back</button>
             </div>
             <div>
-              <button type="submit" class="btn  main-btn float-right">enter room <i
+              <button type="submit" class="btn  main-btn float-right" id="enter-room">enter room <i
                   class="fas fa-arrow-right"></i></button>
             </div>
 
@@ -124,25 +128,25 @@
   </section>
 
   <section id="game">
-    <div class="m-0 p-0">
+    <iframe src="https://gifer.com/embed/XVo6" width=100 height=100.000 frameBorder="0" allowFullScreen></iframe>
       <div class="navigation">
         <div class="side-bar-left">
+          <img src="./images/WorkSpacesLogo.svg" class="w-25">
           <div class="grid gr-col-2">
             <img id="avatar-to-display" src="./images/characters/char-1.png">
-            <div>
-              <p id="name-display"></p>
+            <div class="mt-5">
+              <h3 id="name-display">User</h3>
+              <button class="btn" id="mic" value="0"> <i class="fas fa-microphone" id="mic-icon"></i></button>
+              <form>
+                <div class="form-group">
+                  <label for="formControlRange" name="radius">My hearing radius</label>
+                  <input type="range" class="form-control-range" id="formControlRange">
+                </div>
+              </form>
             </div>
           </div>
-          <button class="btn">mute mic</button>
-          
           <div class="m-around-10">
-          <form>
-            <div class="form-group ">
-              <label for="formControlRange">My hearing radius</label>
-              <input type="range" class="form-control-range" id="formControlRange" >
-            </div>
-          </form>
-        </div>
+          </div>
           <p class="mt-5">Inventory: drag and drop into the workspace</p>
           <div class="grid gr-col-4">
             <img src="./images/items/computer.png">
@@ -157,21 +161,24 @@
             <img src="./images/items/table-3.png">
             <img src="./images/items/chair.png">
             <img src="./images/items/chair-2.png">
-          
-        </div>
+          </div>
+          <div class="grid gr-col-2 mt-5">
+            <div class="float-left">
+              <button id="game-login-btn" class="btn">
+                back to login
+              </button>
+            </div>
+            <div>
+              <button class="btn float-right">exit <i class="fas fa-sign-out-alt"></i></button>
+            </div>
+          </div>
         </div>
       </div>
-
       <audio id="game-audio"></audio>
       <div id="game-container" class="m-0 p-0">
-
       </div>
-      <button id="game-login-btn" class="btn btn-primary">
-        Go back to login
-      </button>
     </div>
   </section>
-
   <script src="game.js"></script>
   <script>
     //////changing image js
@@ -190,6 +197,25 @@
     document.getElementById("setup-color-Brown").addEventListener("click", function () {
       document.getElementById("display-char").src = "./images/characters/char-4.png";
       document.getElementById("avatar-to-display").src = "./images/characters/char-4.png";
+    });
+    document.getElementById("enter-room").addEventListener("click", function () {
+      document.getElementById("name-display").innerHTML = document.getElementById("setup-name-input").value;
+    });
+    document.getElementById("mic").addEventListener("click", function () {
+      if (this.value == 0) {
+        this.classList.add("text-danger");
+        this.classList.remove("text-info");
+        document.getElementById("mic-icon").classList.remove("fa-microphone");
+        document.getElementById("mic-icon").classList.add("fa-microphone-slash");
+        this.value = 1;
+      } else {
+        this.classList.add("text-info");
+        this.classList.remove("text-danger");
+        document.getElementById("mic-icon").classList.add("fa-microphone");
+        document.getElementById("mic-icon").classList.remove("fa-microphone-slash");
+        this.value = 0;
+      }
+
     });
   </script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
