@@ -21,6 +21,10 @@ class World implements SocketEvents {
         this.handler = handler;
     }
 
+    userMoved(user: IUser): void {
+        (window as any).users[user.id] = user
+    }
+
     setHandler = (handler: WorldEvents) => {
         this.handler = handler;
     }
@@ -58,6 +62,10 @@ class World implements SocketEvents {
 
     getUserById(id: string): IUser {
         return (window as any).users[id];
+    }
+
+    getUsers(): IUser[] {
+        return Object.keys((window as any).users).map(k => (window as any).users[k])
     }
 
     handleError(error: any): void {

@@ -65,6 +65,7 @@ export default class SetupState extends AState {
         (GetElementById("setup-submit-btn") as any).disabled = true
         const id = StateManager.GetInstance().Socket.getSocketId();
         const me = StateManager.GetInstance().World.getUserById(id);
+        console.log("me", me);
         if (me.isHost) {
             StateManager.GetInstance().requestMicrophoneAccess()
                 .then(() => {
