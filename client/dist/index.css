@@ -3,6 +3,11 @@ html {
   margin: 0%;
 }
 
+.logo {
+  max-width: 150px;
+  margin: 0 2rem 0 0;
+}
+
 body {
   background-color: #f2f2f2;
   font-family: "Work Sans", sans-serif;
@@ -68,6 +73,12 @@ img {
 input[type="radio"] {
   display: none;
   margin: 10px;
+
+}
+
+label[name="radius"] {
+  padding: 0;
+  margin-top: 1.2rem;
 }
 
 #login-channel {
@@ -79,6 +90,10 @@ input[type="radio"] {
 input[type="text"]:focus {
   box-shadow: 0 0 10px #A5BCB4;
   border: 2px solid #608074;
+}
+
+iframe {
+  border-radius: 50%;
 }
 
 /*
@@ -196,7 +211,19 @@ input[type="radio"]:checked+label {
 
 .gr-col-4 {
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-gap: 1rem;
+  grid-gap: 1.2rem;
+
+
+}
+
+.gr-col-4>* {
+  transition: 0.3s;
+  border: 2px solid #fafafa;
+}
+
+.gr-col-4>*:hover {
+  border: 2px solid #a5bcb4;
+  border-radius: 10px;
 }
 
 .no-p {
