@@ -60,8 +60,16 @@ export default class SetupState extends AState {
         StateManager.GetInstance().Pop();
     }
 
-    playGame = async () => {
-        // StateManager.GetInstance().Socket.addUser();
-        StateManager.GetInstance().Push(await GameState.Create());
+    playGame = () => {
+        const id = StateManager.GetInstance().Socket.getSocketId();
+        const me = StateManager.GetInstance().World.getUserById(id);
+        if (me.isHost) {
+            StateManager.GetInstance().requestMicrophoneAccess()
+                .then(async () => {
+                    StateManager.GetInstance().Push(await GameState.Create());
+                }).catch(e => {
+                    console.log(e);
+                });
+        }
     }
 }

@@ -20,7 +20,8 @@ export default {
         name: 'MyGame',
         format: 'iife',
         sourcemap: false,
-        intro: 'var global = window;'
+        intro: 'var global = window;',
+        globals: ['io']
     },
 
     plugins: [
@@ -60,6 +61,7 @@ export default {
         uglify({
             mangle: false
         })
+    ],
+    external: ['io'], // <-- suppresses the warning
 
-    ]
 };

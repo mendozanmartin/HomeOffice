@@ -12,10 +12,16 @@ class Game {
     private activeSockets: { [id: string]: UserDetails } = {};
 
     public setUserRoom(userId: string, room: Room) {
+        let isHost = false;
+        const users = this.getAllUsersInRoom(room);
+        if (users.length === 0) {
+            isHost = true;
+        }
         this.activeSockets[userId] = {
             room,
             user: {
                 id: userId,
+                isHost,
                 color: "",
                 name: "",
                 pronoun: "",
@@ -28,7 +34,7 @@ class Game {
     }
 
     public setUserDetails(userId: string, user: IUser) {
-        this.activeSockets[userId].user = { ...user, ...{ id: userId } };
+        this.activeSockets[userId].user = { ...this.activeSockets[userId].user, ...user, ...{ id: userId } };
     }
 
     public getUserRoom(userId: string): string {
@@ -36,9 +42,12 @@ class Game {
     }
 
     public getAllUsersInRoom(room: string): IUser[] {
-        return Object.keys(this.activeSockets)
+        const a = Object.keys(this.activeSockets)
             .filter(k => this.activeSockets[k].room === room)
-            .map(k => this.activeSockets[k].user)
+            .map(k => this.activeSockets[k]);
+
+        console.log(JSON.stringify(a, null, 2))
+        return a.map(k => k.user);
     }
 }
 

@@ -4,6 +4,16 @@ import { createServer, Server as HTTPServer } from "http";
 import Game from "./Game";
 import IUser from "./Types/IUser";
 
+type OfferCall = {
+    userId: string;
+    offer: RTCSessionDescriptionInit;
+}
+
+type AnswerCall = {
+    hostId: string;
+    answer: RTCSessionDescriptionInit;
+}
+
 export class Server {
     private httpServer: HTTPServer;
     private app: Application;
@@ -34,7 +44,7 @@ export class Server {
     private handleDefaultSocketConnection(): void {
         this.io.on("connection", (socket) => {
             // join default room
-            console.log(`${socket.id}: Socket connected to /.`);
+            console.log(`${socket.id}: Socket connected to /`);
             socket.join("/")
             this.game.setUserRoom(socket.id, "/");
 
@@ -51,6 +61,22 @@ export class Server {
                 const room = this.game.getUserRoom(socket.id);
                 console.log(`${socket.id}: Socket added ${user.name} to room ${room}`)
                 this.io.in(room).emit("user:added", user);
+            });
+
+            socket.on("channel:user:offerCall", ({ userId, offer }: OfferCall) => {
+                console.log(`User ${userId} has been offered a call by ${socket.id}`)
+                socket.to(userId).emit("user:answerCall", {
+                    offer: offer,
+                    hostId: socket.id
+                });
+            })
+
+            socket.on("channel:user:answerCall", ({ hostId, answer }: AnswerCall) => {
+                console.log(`User ${socket.id} has answered call by ${hostId}`)
+                socket.to(hostId).emit("user:answered", {
+                    userId: socket.id,
+                    answer: answer
+                });
             })
 
             socket.on("channel:leave", () => {
@@ -63,8 +89,8 @@ export class Server {
 
             socket.on("disconnect", () => {
                 const room = this.game.getUserRoom(socket.id);
-                console.log(`${socket.id}: Socket disconnected from ${room}`)
-                this.io.in(room).emit("user:remove", { userId: socket.id })
+                console.log(`${socket.id}: Socket disconnected from ${room}`);
+                this.io.in(room).emit("user:remove", { userId: socket.id });
                 this.game.removeUser(socket.id);
             });
         });

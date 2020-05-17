@@ -1,36 +1,93 @@
 import AState from "./AState";
-import World from "../game/World";
+import World, { WorldEvents } from "../game/World";
 import Socket from "../socket";
+import IUser from "../models/IUser";
+import RTCManager from "../RTCManager";
+import IJoinCall from "../models/ICall";
+import IAnswerCall from "../models/IAnswer";
 
 /**
  * Website StateManager
  * Control what pages are currently shown to the user
  */
-export default class StateManager {
+export default class StateManager implements WorldEvents {
 
     public static Initialize() {
-        const world = new World();
-        const socket = new Socket(world);
-        this.instance = new StateManager(world, socket);
+        this.instance = new StateManager();
+        this.instance.World.setHandler(this.instance);
     }
 
     public static GetInstance = (): StateManager => {
         if (StateManager.instance === undefined) {
             throw new Error("Manager must be initialized must be ");
         }
+        StateManager.instance.World.setHandler(StateManager.instance);
         return StateManager.instance!;
     }
 
     public World: World;
     public Socket: Socket;
+    public RTCManager: RTCManager;
 
     private static instance?: StateManager;
 
     private stack: AState[] = [];
 
-    private constructor(world: World, socket: Socket) {
-        this.World = world;
-        this.Socket = socket;
+    private constructor() {
+        this.RTCManager = new RTCManager();
+        this.World = new World(this);
+        this.Socket = new Socket(this.World);
+    }
+
+    requestMicrophoneAccess(): Promise<void> {
+        return this.RTCManager.requestAudio()
+    }
+
+    joinCall(answer: IAnswerCall) {
+        this.RTCManager.joinCall(answer)
+            .then(() => console.log('success'))
+            .catch(() => console.log('error'));
+    }
+
+    answerCall(offer: IJoinCall) {
+        console.log("decideOffer", offer);
+        if (!this.World.getUserById(offer.hostId).isHost) {
+            console.log('user is not host, he cant accept a call');
+            return;
+        }
+        this.RTCManager.setupRemoteRemoveDescription(offer.offer)
+            .then(answer => {
+                this.RTCManager.requestAudio()
+                    .then(() => {
+                        this.RTCManager.createAnswer()
+                            .then(answer => {
+                                this.RTCManager.setupLocalDescription(answer)
+                                    .then(() => {
+                                        this.Socket.answerCall(offer.hostId, answer)
+                                    })
+                            })
+                    })
+
+            });
+    }
+
+    addUser(user: IUser) {
+        console.log('makeOffer', user);
+        if (user.isHost) {
+            console.log('host cant make offer to himself');
+            return
+        }
+        const me = this.World.getUserById(this.Socket.getSocketId())
+        if (!me.isHost) {
+            console.log('cant make offer, im not host')
+            return
+        }
+        this.RTCManager.makeOffer()
+            .then(offer => {
+                this.RTCManager.setupLocalDescription(offer)
+                    .then(() => this.Socket.offerCall(user.id, offer))
+                    .catch(() => console.log('something happened'))
+            })
     }
 
     /**
